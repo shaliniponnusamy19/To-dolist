@@ -1,109 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- bootstrap css -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!--font awesome  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <!-- favicon -->
-    <link rel="shortcut icon" href="/to-do-list.png" type="image/x-icon">
-    <title>Document</title>
+    <title>My Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        background-image: url("");
-        background-image: linear-gradient(to right, rgb(66, 132, 156), rgb(17, 54, 75));
-        display: flex;
-        justify-content: center;
-    }
-
-    input {
-        border-radius: 25px;
-        border: 2px solid black;
-        margin-top: 30px;
-        margin-left: 20px;
-        flex-grow: 1;
-        width: 250px;
-        padding: 10px;
-        margin-left: 25%;
-        align-items: center;
-
-    }
-
-    h1 {
-        display: flex;
-        justify-content: center;
-    }
-</style>
-
 <body>
+    
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <h1>To do List <img src="/to-do-list-to-do.gif" height="50px" ;width="50px"></h1>
-        <input type="text" name="inputname" id="inputfield" placeholder="Enter you want to add " />
-        <button type="submit" class="btn-secondary" onclick="createItem()">Add</button>
-        <ul id="datalist">
-
-            
+      <a class="navbar-brand" href="#"><b>My Portfolio</b></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#projects">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
         </ul>
+      </div>
     </div>
+  </nav>
+
+  <!-- About Section -->
+  <section id="about" class="py-5 text-center">
+    <div class="container">
+      <h2>About Me</h2>
+      <article>
+        <p>Hello! I'm Shalini, a web developer passionate about creating websites. I have experience in HTML, CSS, JavaScript, and more.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-5 text-center bg-light">
+    <div class="container">
+      <h2>My Projects</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <img src="image/to-do-list.jpg" class="card-img-top" alt="Project 1">
+            <div class="card-body">
+              <h5 class="card-title">Project 1</h5>
+              <p class="card-text">To-Do-List.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <img src="image/calculator.jfif" class="card-img-top" alt="Project 2">
+            <div class="card-body">
+              <h5 class="card-title">Project 2</h5>
+              <p class="card-text">Tip Calculator</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <img src="image/netflix.jpg" class="card-img-top" alt="Project 3" height="350" width="350">
+            <div class="card-body">
+              <h5 class="card-title">Project 3</h5>
+              <p class="card-text">Netflix Clone</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-3 text-center">
+    <div class="container">
+      <h2>Contact Me</h2>
+        <input type="text" name="name" placeholder="Your Name" class="form-control mb-3" required>
+        <input type="email" name="email" placeholder="Your Email" class="form-control mb-3" required>
+        <textarea name="message" placeholder="Write Something Here...." class="form-control mb-3" rows="4" required></textarea>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- footer section -->
+  <footer class="bg-black py-4 text-center">
+    <div class="container">
+      <p class="mb-0">© 2024 Shalini's Portfolio. All Rights Reserved.</p>
+      <a href="#about" class="text-decoration-none">Back to Top</a>
+    </div>
+  </footer>
+    
 </body>
-<script>
-    let data = []
-    let editindex = -1
-
-    function createItem() {
-        let inputvalue = document.getElementById("inputfield").value.trim()
-
-        if (inputvalue) {
-            if (editindex === -1) {
-                data.push(inputvalue)
-            } else {
-                data[editindex] = inputvalue
-                editindex = -1 // Reset after editing
-            }
-            document.getElementById("inputfield").value = '' // Clear input field
-            getItems() // Update the list
-        } else {
-            alert("Please enter Something...!!")
-        }
-    }
-
-    function getItems() {
-        const getdata = document.getElementById("datalist")
-        getdata.innerHTML = '' 
-        data.forEach((item, index) => {
-            const li = document.createElement("li")
-            li.textContent = item
-
-            const Editbtn = document.createElement("button")
-            Editbtn.textContent = "edit"
-            Editbtn.onclick = () => editItem(index)
-
-            const Deletebtn = document.createElement('button')
-            Deletebtn.textContent = "delete"
-            Deletebtn.onclick = () => deleteItem(index)
-
-            li.appendChild(Editbtn)
-            li.appendChild(Deletebtn)
-            getdata.appendChild(li) // Append the <li> to the <ul>
-        })
-    }
-
-    function editItem(index) {
-        document.getElementById("inputfield").value = data[index]
-        editindex = index
-    }
-
-    function deleteItem(index) {
-        data.splice(index, 1)
-        getItems()
-    }
-</script>
-
 </html>
